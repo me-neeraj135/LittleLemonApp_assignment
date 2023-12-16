@@ -1,48 +1,53 @@
 import React from "react";
-import { View, Text, StyleSheet, Pressable } from "react-native";
-
-import Logo from "../screen/Logo";
-
+import { View, Text, StyleSheet, Pressable, Image } from "react-native";
+import Button from "../component/Button";
 const WelcomeScreen = ({ navigation }) => {
   return (
-    <View style={Styles.container}>
-      <Logo />
-      <Text style={Styles.titleText}>
-        Little lemon your local {"\n"}Mediterranean Bistro
-      </Text>
-
-      <Pressable
-        style={Styles.button}
-        onPress={() => navigation.navigate("Subscribe")}
+    <View style={styles.container}>
+      <View style={styles.contentContainer}>
+        <Image
+          style={styles.logo}
+          source={require("../assets/images/logo.png")}
+        />
+        <Text style={styles.title}>
+          Little Lemon, your local Mediterranean Bistro
+        </Text>
+      </View>
+      <Button
+        onPress={() => {
+          navigation.navigate("Subscribe");
+        }}
       >
-        <Text style={Styles.buttonText}>Newsletter</Text>
-      </Pressable>
+        Newsletter
+      </Button>
     </View>
   );
 };
 
-export default WelcomeScreen;
-
-const Styles = StyleSheet.create({
+const styles = StyleSheet.create({
   container: {
     flex: 1,
-    width: "100%",
-    justifyContent: "space-around",
-    alignItems: "center",
-    // backgroundColor: "gray",
+    padding: 24,
+    backgroundColor: "white",
+    justifyContent: "space-between",
   },
-  titleText: {
-    fontSize: 22,
-    fontWeight: "600",
-    textAlign: "center",
-  },
-  button: {
-    width: "90%",
-    padding: 10,
-    borderRadius: 10,
-    alignItems: "center",
+  contentContainer: {
+    flex: 1,
     justifyContent: "center",
-    backgroundColor: "#40524C",
+    alignItems: "center",
   },
-  buttonText: { fontSize: 20, color: "white" },
+  logo: {
+    height: 200,
+    width: 300,
+    resizeMode: "contain",
+  },
+  title: {
+    marginTop: 48,
+    paddingVertical: 10,
+    color: "#333333",
+    textAlign: "center",
+    fontSize: 20,
+    fontWeight: "bold",
+  },
 });
+export default WelcomeScreen;
